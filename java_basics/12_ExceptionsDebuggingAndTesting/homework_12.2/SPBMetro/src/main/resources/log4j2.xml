@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="warn" name="MyApp" packages="">
+
+    <appenders>
+
+        <RollingFile name="Stations" fileName="logs/Stations.log"
+                     filePattern="logs/Stations-%d{MM-dd-yyyy}.log.gz">
+            <MarkerFilter marker="Stations" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+
+        <RollingFile name="ErrStations" fileName="logs/errStations.log"
+                     filePattern="logs/errStations-%d{MM-dd-yyyy}.log.gz">
+            <MarkerFilter marker="ErrStations" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+
+        <RollingFile name="Errors" fileName="logs/Errors.log"
+                     filePattern="logs/Errors-%d{MM-dd-yyyy}.log.gz">
+            <MarkerFilter marker="Errors" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+
+    </appenders>
+    <loggers>
+
+        <Root level="info">
+            <AppenderRef ref="Stations"/>
+            <AppenderRef ref="ErrStations"/>
+            <AppenderRef ref="Errors"/>
+        </Root>
+
+    </loggers>
+</configuration>

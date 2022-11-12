@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1caf96c9-c746-46ee-8bce-636ac43209fb" name="Changes" comment="HW_5.7_3">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/config/SpringfoxConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backup_files/config/CommandLineRunnerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup_files/config/CommandLineRunnerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backup_files/data/AbstractHibernateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup_files/data/AbstractHibernateDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backup_files/data/TestEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup_files/data/TestEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backup_files/data/TestEntityCrudRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup_files/data/TestEntityCrudRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backup_files/data/TestEntityDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup_files/data/TestEntityDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backup_files/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backup_files/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/MyBookShopAppApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/MyBookShopAppApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/controllers/AboutPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/controllers/AboutPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/controllers/AuthorsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/controllers/AuthorsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/controllers/GenresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/controllers/GenresController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/controllers/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/controllers/MainPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/controllers/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/controllers/SearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/controllers/SigninController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/controllers/SigninController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/data/author/AuthorEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/data/author/AuthorEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/data/book/book/BookEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/MyBookShopApp/data/book/book/BookEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/liquibase-outputChangeLog_init.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/liquibase-outputChangeLog_init.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/liquibase.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/liquibase.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="HW_4.7" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2E3uXHba04jOA9XuSj6uVImrigv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "database.data.extractors.current.export.id": "CSV-Groovy.csv.groovy",
+    "last_opened_file_path": "D:/Java/searchengine",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "spring.configuration.checksum": "23e8536bc8dc0fd96e2c664fb4be4f0c"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Nextcloud\Share\Programming\Skillbox\java_spring\MyBookShopApp\src\main\resources" />
+      <recent name="D:\Nextcloud\Share\Programming\Skillbox\java_spring\MyBookShopApp\src\backup_files\config" />
+      <recent name="D:\Nextcloud\Share\Programming\Skillbox\java_spring\MyBookShopApp\src\main\java\com\example\MyBookShopApp\data" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Nextcloud\Share\Programming\Skillbox\java_spring\MyBookShopApp" />
+      <recent name="D:\Nextcloud\Share\Programming\Skillbox\java_spring\MyBookShopApp\src\main\resources\db\changelog" />
+      <recent name="D:\Nextcloud\Share\Programming\Skillbox\java_spring\MyBookShopApp\src\backup_files\resources" />
+      <recent name="D:\Nextcloud\Share\Programming\Skillbox\java_spring\MyBookShopApp\src\backup_files\data" />
+      <recent name="D:\Nextcloud\Share\Programming\Skillbox\java_spring\MyBookShopApp\src\backup_files" />
+    </key>
+    <key name="ImportMappingsDialog.RecentPackages">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="MyBookShopApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" activateToolWindowBeforeRun="false">
+      <option name="ALTERNATIVE_JRE_PATH" value="C:\Users\ershov173810\.jdks\corretto-1.8.0_332\jre" />
+      <option name="INCLUDE_PROVIDED_SCOPE" value="false" />
+      <module name="MyBookShopApp" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.MyBookShopApp.MyBookShopAppApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="SwaggerCodegen">
+      <option name="activeConfigurationType" value="FILE" />
+      <option name="configurationPath" value="" />
+      <option name="customJreEnabled" value="false" />
+      <option name="customTemplatesPath" value="" />
+      <option name="enableDebugLogging" value="false" />
+      <option name="generateToPath" value="D:\Nextcloud\Share\Programming\Skillbox\java_spring\MyBookShopApp\gen" />
+      <option name="generationParameters">
+        <list />
+      </option>
+      <option name="generatorPath" value="https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.0.0/openapi-generator-cli-5.0.0.jar" />
+      <option name="jdkPath" value="" />
+      <option name="language" value="java" />
+      <option name="specificationPath" value="D:\Nextcloud\Share\Programming\Skillbox\java_spring\MyBookShopApp\src\main\resources\spring-frontend\swagger.yaml" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1caf96c9-c746-46ee-8bce-636ac43209fb" name="Changes" comment="" />
+      <created>1661836630903</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1661836630903</updated>
+      <workItem from="1661836635383" duration="10855000" />
+      <workItem from="1662567125101" duration="1392000" />
+      <workItem from="1662568562968" duration="688000" />
+      <workItem from="1662624827900" duration="12077000" />
+      <workItem from="1662716200950" duration="48000" />
+      <workItem from="1662716252234" duration="3166000" />
+      <workItem from="1663042616279" duration="2000" />
+      <workItem from="1663140303684" duration="2942000" />
+      <workItem from="1663159687228" duration="64000" />
+      <workItem from="1663159775466" duration="6033000" />
+      <workItem from="1663245552872" duration="718000" />
+      <workItem from="1663582583365" duration="12509000" />
+      <workItem from="1663751682545" duration="7411000" />
+      <workItem from="1663766793135" duration="752000" />
+      <workItem from="1664643281461" duration="2000" />
+      <workItem from="1664945774710" duration="68000" />
+      <workItem from="1664959702986" duration="1786000" />
+      <workItem from="1664966536373" duration="3127000" />
+      <workItem from="1665048342337" duration="74000" />
+      <workItem from="1665410361369" duration="414000" />
+      <workItem from="1665511255694" duration="248000" />
+      <workItem from="1665725394872" duration="1276000" />
+      <workItem from="1665733610892" duration="1321000" />
+      <workItem from="1667282507974" duration="1631000" />
+      <workItem from="1667288434212" duration="1397000" />
+      <workItem from="1667566642787" duration="10434000" />
+      <workItem from="1667742563402" duration="256000" />
+      <workItem from="1667742870145" duration="174000" />
+      <workItem from="1667746029642" duration="3731000" />
+      <workItem from="1667913544601" duration="1216000" />
+      <workItem from="1667919386023" duration="3428000" />
+      <workItem from="1668067434038" duration="954000" />
+      <workItem from="1668080403853" duration="35000" />
+      <workItem from="1668088707546" duration="623000" />
+      <workItem from="1668099263577" duration="18000" />
+    </task>
+    <task id="LOCAL-00001" summary="HW_4.7_1">
+      <created>1661858167503</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1661858167503</updated>
+    </task>
+    <task id="LOCAL-00002" summary="HW_4.7_1">
+      <created>1663173961324</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1663173961324</updated>
+    </task>
+    <task id="LOCAL-00003" summary="HW_5.7_1">
+      <created>1663585045209</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1663585045209</updated>
+    </task>
+    <task id="LOCAL-00004" summary="HW_5.7_1">
+      <created>1663668249425</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1663668249425</updated>
+    </task>
+    <task id="LOCAL-00005" summary="HW_5.7_2">
+      <created>1663756953542</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1663756953542</updated>
+    </task>
+    <task id="LOCAL-00006" summary="HW_5.7_3">
+      <created>1663767114385</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1663767114385</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/HW_4.7" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="HW_4.7_1" />
+    <MESSAGE value="HW_5.7_1" />
+    <MESSAGE value="HW_5.7_2" />
+    <MESSAGE value="HW_5.7_3" />
+    <option name="LAST_COMMIT_MESSAGE" value="HW_5.7_3" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

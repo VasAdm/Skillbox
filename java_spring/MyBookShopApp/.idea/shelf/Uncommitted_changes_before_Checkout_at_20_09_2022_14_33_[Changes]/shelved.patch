@@ -1,0 +1,817 @@
+Index: src/main/java/com/example/MyBookShopApp/data/BookService.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/BookService.java b/src/main/java/com/example/MyBookShopApp/data/book/BookService.java
+rename from src/main/java/com/example/MyBookShopApp/data/BookService.java
+rename to src/main/java/com/example/MyBookShopApp/data/book/BookService.java
+--- a/src/main/java/com/example/MyBookShopApp/data/BookService.java	
++++ b/src/main/java/com/example/MyBookShopApp/data/book/BookService.java	
+@@ -1,4 +1,4 @@
+-package com.example.MyBookShopApp.data;
++package com.example.MyBookShopApp.data.book;
+ 
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Service;
+@@ -9,13 +9,12 @@
+ public class BookService {
+ 
+     private final BookRepository bookRepository;
+-
+     @Autowired
+     public BookService(BookRepository bookRepository) {
+         this.bookRepository = bookRepository;
+     }
+ 
+-    public List<Book> getBooksData() {
++    public List<BookEntity> getBooksData() {
+         return bookRepository.findAll();
+     }
+ }
+Index: src/main/java/com/example/MyBookShopApp/data/enums/ContactType.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/enums/ContactType.java b/src/main/java/com/example/MyBookShopApp/data/enums/ContactType.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/MyBookShopApp/data/enums/ContactType.java	
+@@ -0,0 +1,6 @@
++package com.example.MyBookShopApp.data.enums;
++
++public enum ContactType {
++    PHONE,
++    EMAIL;
++}
+Index: src/main/java/com/example/MyBookShopApp/data/other/FaqEntity.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/other/FaqEntity.java b/src/main/java/com/example/MyBookShopApp/data/other/FaqEntity.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/MyBookShopApp/data/other/FaqEntity.java	
+@@ -0,0 +1,53 @@
++package com.example.MyBookShopApp.data.other;
++
++import javax.persistence.*;
++
++@Entity
++@Table(name = "faq")
++public class FaqEntity {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    private int id;
++
++    @Column(columnDefinition = "INT NOT NULL  DEFAULT 0")
++    private int sortIndex;
++
++    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
++    private String question;
++
++    @Column(columnDefinition = "TEXT NOT NULL")
++    private String answer;
++
++    public int getId() {
++        return id;
++    }
++
++    public void setId(int id) {
++        this.id = id;
++    }
++
++    public int getSortIndex() {
++        return sortIndex;
++    }
++
++    public void setSortIndex(int sortIndex) {
++        this.sortIndex = sortIndex;
++    }
++
++    public String getQuestion() {
++        return question;
++    }
++
++    public void setQuestion(String question) {
++        this.question = question;
++    }
++
++    public String getAnswer() {
++        return answer;
++    }
++
++    public void setAnswer(String answer) {
++        this.answer = answer;
++    }
++}
+Index: src/test/java/com/example/MyBookShopApp/MyBookShopAppApplicationTests.java
+===================================================================
+diff --git a/src/test/java/com/example/MyBookShopApp/MyBookShopAppApplicationTests.java b/src/test/java/com/example/MyBookShopApp/MyBookShopAppApplicationTestsEntity.java
+rename from src/test/java/com/example/MyBookShopApp/MyBookShopAppApplicationTests.java
+rename to src/test/java/com/example/MyBookShopApp/MyBookShopAppApplicationTestsEntity.java
+--- a/src/test/java/com/example/MyBookShopApp/MyBookShopAppApplicationTests.java	
++++ b/src/test/java/com/example/MyBookShopApp/MyBookShopAppApplicationTestsEntity.java	
+@@ -4,7 +4,7 @@
+ import org.springframework.boot.test.context.SpringBootTest;
+ 
+ @SpringBootTest
+-class MyBookShopAppApplicationTests {
++class MyBookShopAppApplicationTestsEntity {
+ 
+ 	@Test
+ 	void contextLoads() {
+Index: src/main/java/com/example/MyBookShopApp/data/Author.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/Author.java b/src/main/java/com/example/MyBookShopApp/data/author/Author.java
+rename from src/main/java/com/example/MyBookShopApp/data/Author.java
+rename to src/main/java/com/example/MyBookShopApp/data/author/Author.java
+--- a/src/main/java/com/example/MyBookShopApp/data/Author.java	
++++ b/src/main/java/com/example/MyBookShopApp/data/author/Author.java	
+@@ -1,30 +1,27 @@
+-package com.example.MyBookShopApp.data;
++package com.example.MyBookShopApp.data.author;
+ 
+ import lombok.Getter;
+ import lombok.Setter;
+ 
+ import javax.persistence.*;
+-import java.util.ArrayList;
+-import java.util.List;
+ 
+ @Entity
+ @Table(name = "authors")
+ @Getter
+ @Setter
+ public class Author {
+-    @Id
+-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+-    private Integer id;
+-    private String firstName;
+-    private String lastName;
++	@Id
++	@GeneratedValue(strategy = GenerationType.IDENTITY)
++	private Integer id;
++	private String firstName;
++	private String lastName;
+ 
+-    @OneToMany(mappedBy = "author")
+-    private List<Book> bookList = new ArrayList<>();
++//    @OneToMany(mappedBy = "author")
++//    private List<BookEntity> bookEntityList = new ArrayList<>();
+ 
+ 
+-    @Override
+-    public String toString()
+-    {
+-        return firstName + " " + lastName;
+-    }
++	@Override
++	public String toString() {
++		return firstName + " " + lastName;
++	}
+ }
+Index: src/main/java/com/example/MyBookShopApp/data/payments/BalanceTransactionEntity.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/payments/BalanceTransactionEntity.java b/src/main/java/com/example/MyBookShopApp/data/payments/BalanceTransactionEntity.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/MyBookShopApp/data/payments/BalanceTransactionEntity.java	
+@@ -0,0 +1,38 @@
++package com.example.MyBookShopApp.data.payments;
++
++import com.example.MyBookShopApp.data.book.BookEntity;
++import com.example.MyBookShopApp.data.user.UserEntity;
++import lombok.Getter;
++import lombok.Setter;
++
++import javax.persistence.*;
++import java.time.LocalDateTime;
++
++@Entity
++@Getter
++@Setter
++@Table(name = "balance_transaction")
++public class BalanceTransactionEntity {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    private int id;
++
++    @ManyToOne
++    @JoinColumn(name = "user_id", referencedColumnName = "id")
++    private UserEntity user;
++
++    @Column(columnDefinition = "TIMESTAMP NOT NULL")
++    private LocalDateTime time;
++
++    @Column(columnDefinition = "INT NOT NULL  DEFAULT 0")
++    private int value;
++
++    @ManyToOne
++    @JoinColumn(name = "book_id", referencedColumnName = "id")
++    private BookEntity book;
++
++    @Column(columnDefinition = "TEXT NOT NULL")
++    private String description;
++
++}
+Index: src/main/java/com/example/MyBookShopApp/data/other/DocumentEntity.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/other/DocumentEntity.java b/src/main/java/com/example/MyBookShopApp/data/other/DocumentEntity.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/MyBookShopApp/data/other/DocumentEntity.java	
+@@ -0,0 +1,64 @@
++package com.example.MyBookShopApp.data.other;
++
++import javax.persistence.*;
++
++@Entity
++@Table(name = "document")
++public class DocumentEntity {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    private int id;
++
++    @Column(columnDefinition = "INT NOT NULL  DEFAULT 0")
++    private int sortIndex;
++
++    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
++    private String slug;
++
++    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
++    private String title;
++
++    @Column(columnDefinition = "TEXT NOT NULL")
++    private String text;
++
++    public int getId() {
++        return id;
++    }
++
++    public void setId(int id) {
++        this.id = id;
++    }
++
++    public int getSortIndex() {
++        return sortIndex;
++    }
++
++    public void setSortIndex(int sortIndex) {
++        this.sortIndex = sortIndex;
++    }
++
++    public String getSlug() {
++        return slug;
++    }
++
++    public void setSlug(String slug) {
++        this.slug = slug;
++    }
++
++    public String getTitle() {
++        return title;
++    }
++
++    public void setTitle(String title) {
++        this.title = title;
++    }
++
++    public String getText() {
++        return text;
++    }
++
++    public void setText(String text) {
++        this.text = text;
++    }
++}
+Index: src/main/java/com/example/MyBookShopApp/controllers/BooksController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.MyBookShopApp.controllers;\r\n\r\nimport com.example.MyBookShopApp.data.Book;\r\nimport com.example.MyBookShopApp.data.BookService;\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.web.bind.annotation.GetMapping;\r\nimport org.springframework.web.bind.annotation.ModelAttribute;\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\n\r\nimport java.util.List;\r\n\r\n@Controller\r\n@RequestMapping(\"/books\")\r\npublic class BooksController\r\n{\r\n\tprivate final BookService bookService;\r\n\r\n\tpublic BooksController(BookService bookService)\r\n\t{\r\n\t\tthis.bookService = bookService;\r\n\t}\r\n\r\n\t@ModelAttribute(\"booksList\")\r\n\tpublic List<Book> booksList(){\r\n\t\treturn bookService.getBooksData();\r\n\t}\r\n\r\n\t@GetMapping(\"/recent\")\r\n\tpublic String recentPage()\r\n\t{\r\n\t\treturn \"/books/recent\";\r\n\t}\r\n\r\n\t@GetMapping(\"/popular\")\r\n\tpublic String popularPage()\r\n\t{\r\n\t\treturn \"/books/popular\";\r\n\t}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/controllers/BooksController.java b/src/main/java/com/example/MyBookShopApp/controllers/BooksController.java
+--- a/src/main/java/com/example/MyBookShopApp/controllers/BooksController.java	
++++ b/src/main/java/com/example/MyBookShopApp/controllers/BooksController.java	
+@@ -1,7 +1,7 @@
+ package com.example.MyBookShopApp.controllers;
+ 
+-import com.example.MyBookShopApp.data.Book;
+-import com.example.MyBookShopApp.data.BookService;
++import com.example.MyBookShopApp.data.book.BookEntity;
++import com.example.MyBookShopApp.data.book.BookService;
+ import org.springframework.stereotype.Controller;
+ import org.springframework.web.bind.annotation.GetMapping;
+ import org.springframework.web.bind.annotation.ModelAttribute;
+@@ -21,7 +21,7 @@
+ 	}
+ 
+ 	@ModelAttribute("booksList")
+-	public List<Book> booksList(){
++	public List<BookEntity> booksList(){
+ 		return bookService.getBooksData();
+ 	}
+ 
+Index: src/main/java/com/example/MyBookShopApp/data/user/UserEntity.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/user/UserEntity.java b/src/main/java/com/example/MyBookShopApp/data/user/UserEntity.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/MyBookShopApp/data/user/UserEntity.java	
+@@ -0,0 +1,55 @@
++package com.example.MyBookShopApp.data.user;
++
++import com.example.MyBookShopApp.data.book.file.FileDownloadEntity;
++import com.example.MyBookShopApp.data.book.review.BookReviewEntity;
++import com.example.MyBookShopApp.data.book.review.BookReviewLikeEntity;
++import com.example.MyBookShopApp.data.book.review.MessageEntity;
++import com.example.MyBookShopApp.data.payments.BalanceTransactionEntity;
++import lombok.Getter;
++import lombok.Setter;
++
++import javax.persistence.*;
++import java.time.LocalDateTime;
++import java.util.List;
++
++@Entity
++@Getter
++@Setter
++@Table(name = "users")
++public class UserEntity {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    private int id;
++
++    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
++    private String hash;
++
++    @Column(columnDefinition = "TIMESTAMP NOT NULL")
++    private LocalDateTime regTime;
++
++    @Column(columnDefinition = "INT NOT NULL")
++    private int balance;
++
++    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
++    private String name;
++
++    @OneToMany(mappedBy = "user")
++    private List<BookReviewEntity> bookReviews;
++
++    @OneToMany(mappedBy = "user")
++    private List<BalanceTransactionEntity> balanceTransactions;
++
++    @OneToMany(mappedBy = "user")
++    private List<FileDownloadEntity> fileDownloads;
++
++    @OneToMany(mappedBy = "user")
++    private List<MessageEntity> messages;
++
++    @OneToMany(mappedBy = "user")
++    private List<UserContactEntity> userContacts;
++
++    @OneToMany(mappedBy = "user")
++    private List<BookReviewLikeEntity> bookReviewLikes;
++
++}
+Index: src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>server.port=8085\r\n\r\nspring.messages.basename=lang.messages\r\nspring.resources.static-locations=classpath:/spring-frontend/\r\nspring.thymeleaf.prefix=classpath:/spring-frontend/\r\n\r\nspring.datasource.url=jdbc:postgresql://62.148.227.113:5432/postgres\r\nspring.datasource.username=postgres\r\nspring.datasource.password=QwEr3466\r\nspring.datasource.driver-class-name=org.postgresql.Driver\r\nspring.datasource.data=classpath:data.sql\r\nspring.datasource.initialization-mode=always\r\n\r\nspring.jpa.hibernate.ddl-auto=create-drop\r\nspring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect\r\nspring.jpa.show-sql=true
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/application.properties b/src/main/resources/application.properties
+--- a/src/main/resources/application.properties	
++++ b/src/main/resources/application.properties	
+@@ -8,7 +8,7 @@
+ spring.datasource.username=postgres
+ spring.datasource.password=QwEr3466
+ spring.datasource.driver-class-name=org.postgresql.Driver
+-spring.datasource.data=classpath:data.sql
++#spring.datasource.data=classpath:data.sql
+ spring.datasource.initialization-mode=always
+ 
+ spring.jpa.hibernate.ddl-auto=create-drop
+Index: src/main/java/com/example/MyBookShopApp/data/user/UserContactEntity.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/user/UserContactEntity.java b/src/main/java/com/example/MyBookShopApp/data/user/UserContactEntity.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/MyBookShopApp/data/user/UserContactEntity.java	
+@@ -0,0 +1,41 @@
++package com.example.MyBookShopApp.data.user;
++
++import com.example.MyBookShopApp.data.enums.ContactType;
++import lombok.Getter;
++import lombok.Setter;
++
++import javax.persistence.*;
++import java.time.LocalDateTime;
++
++@Entity
++@Getter
++@Setter
++@Table(name = "user_contact")
++public class UserContactEntity {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    private int id;
++
++    @ManyToOne
++    @JoinColumn(name = "user_id", referencedColumnName = "id")
++    private UserEntity user;
++
++    private ContactType type;
++
++    @Column(columnDefinition = "SMALLINT NOT NULL")
++    private short approved;
++
++    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
++    private String code;
++
++    @Column(columnDefinition = "INT")
++    private int codeTrails;
++
++    @Column(columnDefinition = "TIMESTAMP")
++    private LocalDateTime codeTime;
++
++    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
++    private String contact;
++
++}
+Index: src/main/java/com/example/MyBookShopApp/data/book/file/FileDownloadEntity.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/book/file/FileDownloadEntity.java b/src/main/java/com/example/MyBookShopApp/data/book/file/FileDownloadEntity.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/MyBookShopApp/data/book/file/FileDownloadEntity.java	
+@@ -0,0 +1,32 @@
++package com.example.MyBookShopApp.data.book.file;
++
++import com.example.MyBookShopApp.data.book.BookEntity;
++import com.example.MyBookShopApp.data.user.UserEntity;
++import lombok.Getter;
++import lombok.Setter;
++import org.apache.catalina.User;
++
++import javax.persistence.*;
++
++@Entity
++@Getter
++@Setter
++@Table(name = "file_download")
++public class FileDownloadEntity {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    private int id;
++
++    @ManyToOne
++    @JoinColumn(name = "user_id", referencedColumnName = "id")
++    private UserEntity user;
++
++    @ManyToOne
++    @JoinColumn(name = "book_id", referencedColumnName = "id")
++    private BookEntity book;
++
++    @Column(columnDefinition = "INT NOT NULL DEFAULT 1")
++    private int count;
++
++}
+Index: src/main/java/com/example/MyBookShopApp/data/book/file/BookFileTypeEntity.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/book/file/BookFileTypeEntity.java b/src/main/java/com/example/MyBookShopApp/data/book/file/BookFileTypeEntity.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/MyBookShopApp/data/book/file/BookFileTypeEntity.java	
+@@ -0,0 +1,42 @@
++package com.example.MyBookShopApp.data.book.file;
++
++import javax.persistence.*;
++
++@Entity
++@Table(name = "book_file_type")
++public class BookFileTypeEntity {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    private int id;
++
++    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
++    private String name;
++
++    @Column(columnDefinition = "TEXT")
++    private String description;
++
++    public int getId() {
++        return id;
++    }
++
++    public void setId(int id) {
++        this.id = id;
++    }
++
++    public String getName() {
++        return name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public String getDescription() {
++        return description;
++    }
++
++    public void setDescription(String description) {
++        this.description = description;
++    }
++}
+Index: src/main/java/com/example/MyBookShopApp/data/book/links/Book2UserEntity.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/book/links/Book2UserEntity.java b/src/main/java/com/example/MyBookShopApp/data/book/links/Book2UserEntity.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/MyBookShopApp/data/book/links/Book2UserEntity.java	
+@@ -0,0 +1,65 @@
++package com.example.MyBookShopApp.data.book.links;
++
++import javax.persistence.*;
++import java.time.LocalDateTime;
++
++@Entity
++@Table(name = "book2user")
++public class Book2UserEntity {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    private int id;
++
++    @Column(columnDefinition = "TIMESTAMP NOT NULL")
++    private LocalDateTime time;
++
++    @Column(columnDefinition = "INT NOT NULL")
++    private int typeId;
++
++    @Column(columnDefinition = "INT NOT NULL")
++    private int bookId;
++
++    @Column(columnDefinition = "INT NOT NULL")
++    private int userId;
++
++    public int getId() {
++        return id;
++    }
++
++    public void setId(int id) {
++        this.id = id;
++    }
++
++    public LocalDateTime getTime() {
++        return time;
++    }
++
++    public void setTime(LocalDateTime time) {
++        this.time = time;
++    }
++
++    public int getTypeId() {
++        return typeId;
++    }
++
++    public void setTypeId(int typeId) {
++        this.typeId = typeId;
++    }
++
++    public int getBookId() {
++        return bookId;
++    }
++
++    public void setBookId(int bookId) {
++        this.bookId = bookId;
++    }
++
++    public int getUserId() {
++        return userId;
++    }
++
++    public void setUserId(int userId) {
++        this.userId = userId;
++    }
++}
+Index: src/main/java/com/example/MyBookShopApp/data/book/links/Book2UserTypeEntity.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/book/links/Book2UserTypeEntity.java b/src/main/java/com/example/MyBookShopApp/data/book/links/Book2UserTypeEntity.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/MyBookShopApp/data/book/links/Book2UserTypeEntity.java	
+@@ -0,0 +1,42 @@
++package com.example.MyBookShopApp.data.book.links;
++
++import javax.persistence.*;
++
++@Entity
++@Table(name = "book2user_type")
++public class Book2UserTypeEntity {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    private int id;
++
++    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
++    private String code;
++
++    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
++    private String name;
++
++    public int getId() {
++        return id;
++    }
++
++    public void setId(int id) {
++        this.id = id;
++    }
++
++    public String getCode() {
++        return code;
++    }
++
++    public void setCode(String code) {
++        this.code = code;
++    }
++
++    public String getName() {
++        return name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++}
+Index: src/main/java/com/example/MyBookShopApp/data/book/links/Book2AuthorEntity.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/book/links/Book2AuthorEntity.java b/src/main/java/com/example/MyBookShopApp/data/book/links/Book2AuthorEntity.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/MyBookShopApp/data/book/links/Book2AuthorEntity.java	
+@@ -0,0 +1,53 @@
++package com.example.MyBookShopApp.data.book.links;
++
++import javax.persistence.*;
++
++@Entity
++@Table(name = "book2author")
++public class Book2AuthorEntity {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    private int id;
++
++    @Column(columnDefinition = "INT NOT NULL")
++    private int bookId;
++
++    @Column(columnDefinition = "INT NOT NULL")
++    private int authorId;
++
++    @Column(columnDefinition = "INT NOT NULL  DEFAULT 0")
++    private int sortIndex;
++
++    public int getId() {
++        return id;
++    }
++
++    public void setId(int id) {
++        this.id = id;
++    }
++
++    public int getBookId() {
++        return bookId;
++    }
++
++    public void setBookId(int bookId) {
++        this.bookId = bookId;
++    }
++
++    public int getAuthorId() {
++        return authorId;
++    }
++
++    public void setAuthorId(int authorId) {
++        this.authorId = authorId;
++    }
++
++    public int getSortIndex() {
++        return sortIndex;
++    }
++
++    public void setSortIndex(int sortIndex) {
++        this.sortIndex = sortIndex;
++    }
++}
+Index: src/main/java/com/example/MyBookShopApp/data/book/links/Book2GenreEntity.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/book/links/Book2GenreEntity.java b/src/main/java/com/example/MyBookShopApp/data/book/links/Book2GenreEntity.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/MyBookShopApp/data/book/links/Book2GenreEntity.java	
+@@ -0,0 +1,18 @@
++package com.example.MyBookShopApp.data.book.links;
++
++import javax.persistence.*;
++
++@Entity
++@Table(name = "book2genre")
++public class Book2GenreEntity {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    private int id;
++
++    @Column(columnDefinition = "INT NOT NULL")
++    private int bookId;
++
++    @Column(columnDefinition = "INT NOT NULL")
++    private int genreId;
++}
+Index: src/main/java/com/example/MyBookShopApp/data/BookRepository.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/BookRepository.java b/src/main/java/com/example/MyBookShopApp/data/book/BookRepository.java
+rename from src/main/java/com/example/MyBookShopApp/data/BookRepository.java
+rename to src/main/java/com/example/MyBookShopApp/data/book/BookRepository.java
+--- a/src/main/java/com/example/MyBookShopApp/data/BookRepository.java	
++++ b/src/main/java/com/example/MyBookShopApp/data/book/BookRepository.java	
+@@ -1,13 +1,11 @@
+-package com.example.MyBookShopApp.data;
++package com.example.MyBookShopApp.data.book;
+ 
++import com.example.MyBookShopApp.data.book.BookEntity;
+ import org.springframework.data.jpa.repository.JpaRepository;
+ import org.springframework.data.jpa.repository.Query;
+ 
+ import java.util.List;
+ 
+-public interface BookRepository extends JpaRepository<Book, Integer> {
+-    List<Book> findBooksByAuthor_FirstName(String name);
+-
+-    @Query("from Book")
+-    List<Book> customFindAllBooks();
++public interface BookRepository extends JpaRepository<BookEntity, Integer> {
++//    List<BookEntity> findBooksByAuthor_FirstName(String name);
+ }
+Index: src/main/java/com/example/MyBookShopApp/config/CommandLineRunnerImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.MyBookShopApp.config;\r\n\r\nimport com.example.MyBookShopApp.data.BookRepository;\r\nimport com.example.MyBookShopApp.data.TestEntity;\r\nimport com.example.MyBookShopApp.data.TestEntityCrudRepository;\r\nimport com.example.MyBookShopApp.data.TestEntityDao;\r\nimport org.hibernate.HibernateException;\r\nimport org.hibernate.Session;\r\nimport org.hibernate.Transaction;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.boot.CommandLineRunner;\r\nimport org.springframework.context.annotation.Configuration;\r\n\r\nimport javax.persistence.EntityManagerFactory;\r\nimport java.util.function.Supplier;\r\nimport java.util.logging.Logger;\r\nimport java.util.stream.Collectors;\r\n\r\n@Configuration\r\npublic class CommandLineRunnerImpl implements CommandLineRunner {\r\n\r\n\tTestEntityCrudRepository testEntityCrudRepository;\r\n\tBookRepository bookRepository;\r\n\r\n\t@Autowired\r\n\tpublic CommandLineRunnerImpl(TestEntityCrudRepository testEntityCrudRepository, BookRepository bookRepository) {\r\n\t\tthis.testEntityCrudRepository = testEntityCrudRepository;\r\n\t\tthis.bookRepository = bookRepository;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic void run(String... args) throws Exception {\r\n\t\tfor (int i = 0; i < 5; i++) {\r\n\t\t\tcreateTestEntity(new TestEntity());\r\n\t\t}\r\n\r\n\t\tTestEntity readTestEntity = readTestEntityById(3L);\r\n\t\tif (readTestEntity != null) {\r\n\t\t\tLogger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info(\"read: \" + readTestEntity.toString());\r\n\t\t} else {\r\n\t\t\tthrow new NullPointerException();\r\n\t\t}\r\n\r\n\t\tTestEntity updateTestEntity = updateTestEntityById(5L);\r\n\t\tif (updateTestEntity != null) {\r\n\t\t\tLogger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info(\"update: \" + updateTestEntity.toString());\r\n\t\t} else {\r\n\t\t\tthrow new NullPointerException();\r\n\t\t}\r\n\r\n\t\tdeleteTestEntityById(4L);\r\n\r\n\t\tThread.sleep(3000);\r\n\t\tLogger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info( bookRepository.findBooksByAuthor_FirstName(\"Konstance\").toString());\r\n\t\tLogger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info(bookRepository.customFindAllBooks().toString());\r\n\t}\r\n\r\n\tprivate void createTestEntity(TestEntity entity) {\r\n\t\tentity.setData(entity.getClass().getSimpleName()+entity.hashCode());\r\n\t\ttestEntityCrudRepository.save(entity);\r\n\t}\r\n\r\n\tprivate TestEntity readTestEntityById(Long id) {\r\n\t\treturn testEntityCrudRepository.findById(id).get();\r\n\t}\r\n\r\n\tprivate TestEntity updateTestEntityById(Long id) {\r\n\t\tTestEntity testEntity = testEntityCrudRepository.findById(id).get();\r\n\t\ttestEntity.setData(\"NEW DATA\");\r\n\t\ttestEntityCrudRepository.save(testEntity);\r\n\t\treturn testEntity;\r\n\t}\r\n\r\n\tprivate void deleteTestEntityById(Long id) {\r\n\t\ttestEntityCrudRepository.deleteById(id);\r\n\t}\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/config/CommandLineRunnerImpl.java b/src/main/java/com/example/MyBookShopApp/config/CommandLineRunnerImpl.java
+--- a/src/main/java/com/example/MyBookShopApp/config/CommandLineRunnerImpl.java	
++++ b/src/main/java/com/example/MyBookShopApp/config/CommandLineRunnerImpl.java	
+@@ -1,20 +1,13 @@
+ package com.example.MyBookShopApp.config;
+ 
+-import com.example.MyBookShopApp.data.BookRepository;
++import com.example.MyBookShopApp.data.book.BookRepository;
+ import com.example.MyBookShopApp.data.TestEntity;
+ import com.example.MyBookShopApp.data.TestEntityCrudRepository;
+-import com.example.MyBookShopApp.data.TestEntityDao;
+-import org.hibernate.HibernateException;
+-import org.hibernate.Session;
+-import org.hibernate.Transaction;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.boot.CommandLineRunner;
+ import org.springframework.context.annotation.Configuration;
+ 
+-import javax.persistence.EntityManagerFactory;
+-import java.util.function.Supplier;
+ import java.util.logging.Logger;
+-import java.util.stream.Collectors;
+ 
+ @Configuration
+ public class CommandLineRunnerImpl implements CommandLineRunner {
+@@ -51,8 +44,8 @@
+ 		deleteTestEntityById(4L);
+ 
+ 		Thread.sleep(3000);
+-		Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info( bookRepository.findBooksByAuthor_FirstName("Konstance").toString());
+-		Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info(bookRepository.customFindAllBooks().toString());
++//		Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info( bookRepository.findBooksByAuthor_FirstName("Konstance").toString());
++		Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info(bookRepository.findAll().toString());
+ 	}
+ 
+ 	private void createTestEntity(TestEntity entity) {
+Index: src/main/java/com/example/MyBookShopApp/data/AuthorRepository.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/AuthorRepository.java b/src/main/java/com/example/MyBookShopApp/data/author/AuthorRepository.java
+rename from src/main/java/com/example/MyBookShopApp/data/AuthorRepository.java
+rename to src/main/java/com/example/MyBookShopApp/data/author/AuthorRepository.java
+--- a/src/main/java/com/example/MyBookShopApp/data/AuthorRepository.java	
++++ b/src/main/java/com/example/MyBookShopApp/data/author/AuthorRepository.java	
+@@ -1,4 +1,4 @@
+-package com.example.MyBookShopApp.data;
++package com.example.MyBookShopApp.data.author;
+ 
+ import org.springframework.data.jpa.repository.JpaRepository;
+ 
+diff --git a/src/main/resources/data.sql b/src/main/java/data.sql
+rename from src/main/resources/data.sql
+rename to src/main/java/data.sql

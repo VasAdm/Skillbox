@@ -1,0 +1,475 @@
+@font-face {
+  font-family: "Muller";
+  src: url("../fonts/MullerRegular.woff2");
+  src: local("Muller Regular"), local("MullerRegular"),
+    url("../fonts/MullerRegular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  min-width: 320px;
+  font-family: "Muller", sans-serif;
+  background-color: #e5e5e5;
+}
+
+/* glob */
+.list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.btn-reset {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+}
+
+.container {
+  width: 1920px;
+  padding: 0 375px;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.section-title {
+  margin: 0;
+  margin-bottom: 20px;
+  padding-left: 40px;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1;
+  color: #333333;
+}
+
+.section-offset:not(:last-child) {
+  margin-bottom: 70px;
+}
+
+/* header */
+.header {
+  padding-top: 30px;
+  margin-bottom: 70px;
+}
+
+.header-info {
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.header-info-left,
+.header-info-right,
+.header-list,
+.header-nav-btn {
+  align-items: center;
+}
+
+.header-logo {
+  margin-right: 40px;
+}
+
+.header-link-phone {
+  color: #666666;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.header-link-lk {
+  background-image: url("../img/keyboard_tab.svg");
+  background-position: left center;
+  background-size: 24px;
+  background-repeat: no-repeat;
+  color: #cc9933;
+  padding-left: 30px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.header-nav {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 14px 45px;
+  height: 70px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-list-item:not(:last-child) {
+  margin-right: 45px;
+}
+
+.header-link {
+  color: #666666;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.header-button:not(:last-child) {
+  margin-right: 40px;
+}
+
+.btn {
+  border: 1px solid #cc9933;
+  border-radius: 10px;
+  padding: 13px 20px;
+  color: #cc9933;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* special */
+.special-block-left,
+.special-block-right {
+  flex-direction: column;
+  background-repeat: no-repeat;
+}
+
+.special-box-item {
+  padding: 40px 108px 40px 45px;
+  margin: 0;
+  width: 573px;
+  border-radius: 15px;
+  min-height: 258px;
+  flex-direction: column;
+}
+
+.services-item-title {
+  margin: 0;
+}
+
+.special-block-left {
+  margin-right: 24px;
+}
+
+.special-box-item:first-child {
+  margin-bottom: 24px;
+}
+
+.special-img1 {
+  background-image: linear-gradient(
+      90deg,
+      rgba(48, 64, 89, 0.84) -2.9%,
+      rgba(53, 65, 83, 0) 65.7%
+    ),
+    url("../img/spec-1.jpg");
+}
+
+.special-img2 {
+  background-image: linear-gradient(
+      90deg,
+      rgba(48, 64, 89, 0.84) -2.9%,
+      rgba(53, 65, 83, 0) 65.7%
+    ),
+    url("../img/spec-2.jpg");
+}
+
+.special-img3 {
+  background-image: url("../img/spec-3.jpg");
+}
+
+.services-item-title {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.special-block-right {
+  padding-top: 212px;
+}
+
+.special-block-right .services-item-title {
+  font-size: 60px;
+}
+
+.services-item-price {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1;
+  color: #fff;
+}
+
+.services-item-more {
+  background-image: url("../img/Rectangle\ 2.svg");
+  background-size: 11px;
+  width: fit-content;
+  background-position: right center;
+  background-repeat: no-repeat;
+  padding-right: 20px;
+  color: #cc9933;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+  margin-top: auto;
+}
+
+/* About Us */
+.aboutus-desc {
+  margin: 0;
+  max-width: 888px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 2;
+}
+
+/* Services */
+
+.services-list {
+  flex-wrap: wrap;
+}
+
+.services-list-item {
+  flex-direction: column;
+  width: 573px;
+  padding: 190px 45px 35px;
+  border-radius: 15px;
+  background-color: #fff;
+}
+
+.services-list-item:nth-child(odd) {
+  margin-right: 24px;
+}
+
+.services-list-item:nth-child(-n+2) {
+  margin-bottom: 24px;
+}
+
+.services-item-img1 {
+  background-image: url("../img/services-1.jpg");
+  background-repeat: no-repeat;
+}
+
+.services-item-img2 {
+  background-image: url("../img/services-2.jpg");
+  background-repeat: no-repeat;
+}
+
+.services-item-img3 {
+  background-image: url("../img/services-3.jpg");
+  background-repeat: no-repeat;
+}
+
+.services-item-img4 {
+  background-image: url("../img/services-4.jpg");
+  background-repeat: no-repeat;
+}
+
+.service-item-title {
+  margin: 0;
+}
+
+.services-link {
+  padding-right: 20px;
+  width: fit-content;
+  background-size: 11px;
+  background-image: url("../img/Rectangle\ 2.svg");
+  background-repeat: no-repeat;
+  background-position: right center;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 2;
+  color: #cc9933;
+}
+
+.services-desc {
+  margin: 0;
+  max-width: 400px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 2;
+}
+
+/* Advantages */
+.advantages-list {
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.advantages-item {
+  padding: 120px 42px 32px 45px;
+  max-width: 276px;
+  max-width: 276px;
+  border-radius: 15px;
+  background-color: #fff;
+  background-position: 45px 40px;
+}
+
+.advantages-item:not(:nth-child(4n)) {
+  margin-right: 22px;
+}
+
+.advantages-item:nth-child(-n + 4) {
+  margin-bottom: 22px;
+}
+
+.adv-item-img-1 {
+  background-image: url("../img/adv-1.svg");
+  background-repeat: no-repeat;
+}
+.adv-item-img-2 {
+  background-image: url("../img/adv-2.svg");
+  background-repeat: no-repeat;
+}
+.adv-item-img-3 {
+  background-image: url("../img/adv-3.svg");
+  background-repeat: no-repeat;
+}
+.adv-item-img-4 {
+  background-image: url("../img/adv-4.svg");
+  background-repeat: no-repeat;
+}
+.adv-item-img-5 {
+  background-image: url("../img/adv-5.svg");
+  background-repeat: no-repeat;
+}
+.adv-item-img-6 {
+  background-image: url("../img/adv-6.svg");
+  background-repeat: no-repeat;
+}
+.adv-item-img-7 {
+  background-image: url("../img/adv-7.svg");
+  background-repeat: no-repeat;
+}
+.adv-item-img-8 {
+  background-image: url("../img/adv-8.svg");
+  background-repeat: no-repeat;
+}
+
+.advantages-desc {
+  margin: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 2;
+}
+
+/* Accomodation */
+.accomodation-list {
+  flex-wrap: wrap;
+}
+
+.accomodation-item {
+  background-color: #fff;
+  border-radius: 15px;
+  width: 374px;
+}
+
+.accomodation-item:not(:nth-child(3n)) {
+  margin-right: 24px;
+}
+
+.accomodation-item:nth-child(-n + 6) {
+  margin-bottom: 24px;
+}
+
+.accomodation-item-last-img {
+  background-image: url("../img/accomodation-9.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0 54px 27px;
+  justify-content: center;
+}
+
+.accomodation-item-img {
+  border-radius: 15px 15px 0 0;
+  margin-bottom: 32px;
+}
+
+.accomodation-preview-text {
+  padding: 0 45px 45px;
+}
+
+.accomodation-price-start {
+  color: #999999;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.accomodation-price-bold {
+  color: #000;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.accomodation-price-end {
+  color: #000;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.acc-first {
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.accomodation-preview-title {
+  margin: 0;
+  margin-bottom: 16px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+  color: #000;
+}
+
+.accomodation-btn {
+  margin-top: auto;
+}
+
+.accomodation-place {
+  margin: 0;
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+  color: #999999;
+}
+
+.accomodation-all {
+  align-self: flex-end;
+  width: fit-content;
+  padding-right: 17px;
+  background-size: 11px;
+  background-image: url("../img/Rectangle\ 3.svg");
+  background-repeat: no-repeat;
+  background-position: right center;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 2;
+  color: #fff;
+}

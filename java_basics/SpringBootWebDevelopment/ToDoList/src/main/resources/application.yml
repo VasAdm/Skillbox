@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://62.148.227.113:3306/taskList?useSSL=false
+    username: taskUser
+    password: QwEr3466
+  jpa:
+    hibernate:
+      ddl-auto: update
+#      use-new-id-generator-mappings: false

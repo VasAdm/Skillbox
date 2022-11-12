@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <!-- File Appender -->
+        <File name="File" fileName="logs/hibernate.log">
+<!--            <PatternLayout pattern="%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n"/>-->
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+        </File>
+
+    </Appenders>
+    <Loggers>
+<!--        &lt;!&ndash; Log everything in hibernate &ndash;&gt;-->
+<!--        <Logger name="org.hibernate" level="debug" additivity="false">-->
+<!--            &lt;!&ndash;            <AppenderRef ref="Console" />&ndash;&gt;-->
+<!--            <AppenderRef ref="File"/>-->
+<!--        </Logger>-->
+
+<!--        &lt;!&ndash; Log SQL statements &ndash;&gt;-->
+<!--        <Logger name="org.hibernate.SQL" level="DEBUG" additivity="false">-->
+<!--            &lt;!&ndash;            <AppenderRef ref="Console" />&ndash;&gt;-->
+<!--            <AppenderRef ref="File"/>-->
+<!--        </Logger>-->
+
+
+        <Logger name="org.hibernate.SQL" level="debug" additivity="false">
+            <AppenderRef ref="File"/>
+        </Logger>
+        <Logger name="org.hibernate.orm.jdbc.bind" level="trace" additivity="false">
+            <AppenderRef ref="File"/>
+        </Logger>
+        <Logger name="org.hibernate.stat" level="trace" additivity="false">
+            <AppenderRef ref="File"/>
+        </Logger>
+        <Logger name="org.hibernate.SQL_SLOW" level="trace" additivity="false">
+            <AppenderRef ref="File"/>
+        </Logger>
+        <Logger name="org.hibernate.cache" level="trace" additivity="false">
+            <AppenderRef ref="File"/>
+        </Logger>
+
+
+        <Root level="info">
+            <!--            <AppenderRef ref="Console" />-->
+            <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
+</Configuration>

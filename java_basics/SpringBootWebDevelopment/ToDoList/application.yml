@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/taskList?useSSL=false
+    username: taskUser
+    password: QwEr3466
+  jpa:
+    hibernate:
+      ddl-auto: update
+#      use-new-id-generator-mappings: false

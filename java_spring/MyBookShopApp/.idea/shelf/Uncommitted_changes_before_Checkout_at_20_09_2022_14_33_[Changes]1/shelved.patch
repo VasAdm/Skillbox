@@ -1,0 +1,333 @@
+Index: src/main/java/com/example/MyBookShopApp/controllers/AuthorsController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.MyBookShopApp.controllers;\r\n\r\nimport com.example.MyBookShopApp.data.Author;\r\nimport com.example.MyBookShopApp.data.AuthorService;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.web.bind.annotation.GetMapping;\r\nimport org.springframework.web.bind.annotation.ModelAttribute;\r\n\r\nimport java.util.List;\r\nimport java.util.Map;\r\n\r\n@Controller\r\npublic class AuthorsController {\r\n\r\n    private final AuthorService authorService;\r\n\r\n    @Autowired\r\n    public AuthorsController(AuthorService authorService) {\r\n        this.authorService = authorService;\r\n    }\r\n\r\n    @ModelAttribute(\"authorsMap\")\r\n    public Map<String,List<Author>> authorsMap(){\r\n        return authorService.getAuthorsMap();\r\n    }\r\n\r\n    @GetMapping(\"/authors\")\r\n    public String authorsPage(){\r\n        return \"/authors/index\";\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/controllers/AuthorsController.java b/src/main/java/com/example/MyBookShopApp/controllers/AuthorsController.java
+--- a/src/main/java/com/example/MyBookShopApp/controllers/AuthorsController.java	
++++ b/src/main/java/com/example/MyBookShopApp/controllers/AuthorsController.java	
+@@ -1,7 +1,7 @@
+ package com.example.MyBookShopApp.controllers;
+ 
+-import com.example.MyBookShopApp.data.Author;
+-import com.example.MyBookShopApp.data.AuthorService;
++import com.example.MyBookShopApp.data.author.Author;
++import com.example.MyBookShopApp.data.author.AuthorService;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Controller;
+ import org.springframework.web.bind.annotation.GetMapping;
+Index: src/main/java/com/example/MyBookShopApp/data/Book.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/Book.java b/src/main/java/com/example/MyBookShopApp/data/book/BookEntity.java
+rename from src/main/java/com/example/MyBookShopApp/data/Book.java
+rename to src/main/java/com/example/MyBookShopApp/data/book/BookEntity.java
+--- a/src/main/java/com/example/MyBookShopApp/data/Book.java	
++++ b/src/main/java/com/example/MyBookShopApp/data/book/BookEntity.java	
+@@ -1,27 +1,58 @@
+-package com.example.MyBookShopApp.data;
++package com.example.MyBookShopApp.data.book;
+ 
++import com.example.MyBookShopApp.data.book.file.FileDownloadEntity;
++import com.example.MyBookShopApp.data.book.review.BookReviewEntity;
++import com.example.MyBookShopApp.data.payments.BalanceTransactionEntity;
+ import lombok.Getter;
+ import lombok.Setter;
+ import lombok.ToString;
+ 
+ import javax.persistence.*;
++import java.time.LocalDate;
++import java.util.List;
+ 
+ @Entity
+-@Table(name = "books")
+ @Getter
+ @Setter
+ @ToString
+-public class Book {
++@Table(name = "books")
++public class BookEntity {
+ 
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+-    private Integer id;
++    private int id;
++
++    @Column(columnDefinition = "TEXT")
++    private String description;
++
++    @Column(columnDefinition = "SMALLINT NOT NULL")
++    private int discount;
++
++    @Column(columnDefinition = "VARCHAR(255)")
++    private String image;
++
++    @Column(columnDefinition = "SMALLINT NOT NULL")
++    private int isBestseller;
+ 
+-    @ManyToOne
+-    @JoinColumn(name = "author_id", referencedColumnName = "id")
+-    private Author author;
++    @Column(columnDefinition = "INT NOT NULL")
++    private int price;
+ 
++    @Column(columnDefinition = "DATE NOT NULL")
++    private LocalDate pubDate;
++
++    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
++    private String slug;
++
++    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
+     private String title;
+-    private String priceOld;
+-    private String price;
++
++    @OneToMany(mappedBy = "book")
++    private List<BookReviewEntity> bookReviews;
++
++    @OneToMany(mappedBy = "book")
++    private List<BalanceTransactionEntity> balanceTransactions;
++
++    @OneToMany(mappedBy = "book")
++    private List<FileDownloadEntity> fileDownloads;
++
+ }
+Index: src/main/java/com/example/MyBookShopApp/data/book/review/MessageEntity.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/book/review/MessageEntity.java b/src/main/java/com/example/MyBookShopApp/data/book/review/MessageEntity.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/MyBookShopApp/data/book/review/MessageEntity.java	
+@@ -0,0 +1,39 @@
++package com.example.MyBookShopApp.data.book.review;
++
++import com.example.MyBookShopApp.data.user.UserEntity;
++import lombok.Getter;
++import lombok.Setter;
++
++import javax.persistence.*;
++import java.time.LocalDateTime;
++
++@Entity
++@Getter
++@Setter
++@Table(name = "message")
++public class MessageEntity {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    private int id;
++
++    @Column(columnDefinition = "TIMESTAMP NOT NULL")
++    private LocalDateTime time;
++
++    @ManyToOne
++    @JoinColumn(name = "user_id", referencedColumnName = "id")
++    private UserEntity user;
++
++    @Column(columnDefinition = "VARCHAR(255)")
++    private String email;
++
++    @Column(columnDefinition = "VARCHAR(255)")
++    private String name;
++
++    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
++    private String subject;
++
++    @Column(columnDefinition = "TEXT NOT NULL")
++    private String text;
++
++}
+Index: src/main/java/com/example/MyBookShopApp/controllers/MainPageController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.MyBookShopApp.controllers;\r\n\r\nimport com.example.MyBookShopApp.data.Book;\r\nimport com.example.MyBookShopApp.data.BookService;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.ui.Model;\r\nimport org.springframework.web.bind.annotation.GetMapping;\r\nimport org.springframework.web.bind.annotation.ModelAttribute;\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\n\r\nimport java.text.SimpleDateFormat;\r\nimport java.util.Date;\r\nimport java.util.List;\r\n\r\n@Controller\r\npublic class MainPageController {\r\n\r\n    private final BookService bookService;\r\n\r\n    @Autowired\r\n    public MainPageController(BookService bookService) {\r\n        this.bookService = bookService;\r\n    }\r\n\r\n    @ModelAttribute(\"recommendedBooks\")\r\n    public List<Book> recommendedBooks(){\r\n        return bookService.getBooksData();\r\n    }\r\n\r\n    @GetMapping(\"/\")\r\n    public String mainPage(){\r\n        return \"index\";\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/controllers/MainPageController.java b/src/main/java/com/example/MyBookShopApp/controllers/MainPageController.java
+--- a/src/main/java/com/example/MyBookShopApp/controllers/MainPageController.java	
++++ b/src/main/java/com/example/MyBookShopApp/controllers/MainPageController.java	
+@@ -1,16 +1,12 @@
+ package com.example.MyBookShopApp.controllers;
+ 
+-import com.example.MyBookShopApp.data.Book;
+-import com.example.MyBookShopApp.data.BookService;
++import com.example.MyBookShopApp.data.book.BookEntity;
++import com.example.MyBookShopApp.data.book.BookService;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Controller;
+-import org.springframework.ui.Model;
+ import org.springframework.web.bind.annotation.GetMapping;
+ import org.springframework.web.bind.annotation.ModelAttribute;
+-import org.springframework.web.bind.annotation.RequestMapping;
+ 
+-import java.text.SimpleDateFormat;
+-import java.util.Date;
+ import java.util.List;
+ 
+ @Controller
+@@ -24,7 +20,7 @@
+     }
+ 
+     @ModelAttribute("recommendedBooks")
+-    public List<Book> recommendedBooks(){
++    public List<BookEntity> recommendedBooks(){
+         return bookService.getBooksData();
+     }
+ 
+Index: src/main/java/com/example/MyBookShopApp/data/book/review/BookReviewLikeEntity.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/book/review/BookReviewLikeEntity.java b/src/main/java/com/example/MyBookShopApp/data/book/review/BookReviewLikeEntity.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/MyBookShopApp/data/book/review/BookReviewLikeEntity.java	
+@@ -0,0 +1,33 @@
++package com.example.MyBookShopApp.data.book.review;
++
++import com.example.MyBookShopApp.data.user.UserEntity;
++import lombok.Getter;
++import lombok.Setter;
++
++import javax.persistence.*;
++import java.time.LocalDateTime;
++
++@Entity
++@Getter
++@Setter
++@Table(name = "book_review_like")
++public class BookReviewLikeEntity {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    private int id;
++
++    @Column(columnDefinition = "INT NOT NULL")
++    private int reviewId;
++
++    @ManyToOne
++    @JoinColumn(name = "user_id", referencedColumnName = "id")
++    private UserEntity user;
++
++    @Column(columnDefinition = "TIMESTAMP NOT NULL")
++    private LocalDateTime time;
++
++    @Column(columnDefinition = "SMALLINT NOT NULL")
++    private short value;
++
++}
+Index: src/main/java/com/example/MyBookShopApp/data/book/review/BookReviewEntity.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/book/review/BookReviewEntity.java b/src/main/java/com/example/MyBookShopApp/data/book/review/BookReviewEntity.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/MyBookShopApp/data/book/review/BookReviewEntity.java	
+@@ -0,0 +1,34 @@
++package com.example.MyBookShopApp.data.book.review;
++
++import com.example.MyBookShopApp.data.book.BookEntity;
++import com.example.MyBookShopApp.data.user.UserEntity;
++import lombok.Getter;
++import lombok.Setter;
++
++import javax.persistence.*;
++import java.time.LocalDateTime;
++
++@Entity
++@Getter
++@Setter
++@Table(name = "book_review")
++public class BookReviewEntity {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    private int id;
++
++    @ManyToOne
++    @JoinColumn(name = "book_id", referencedColumnName = "id")
++    private BookEntity book;
++
++    @ManyToOne
++    @JoinColumn(name = "user_id", referencedColumnName = "id")
++    private UserEntity user;
++
++    @Column(columnDefinition = "TIMESTAMP NOT NULL")
++    private LocalDateTime time;
++
++    @Column(columnDefinition = "TEXT NOT NULL")
++    private String text;
++}
+Index: src/main/java/com/example/MyBookShopApp/data/genre/GenreEntity.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/genre/GenreEntity.java b/src/main/java/com/example/MyBookShopApp/data/genre/GenreEntity.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/MyBookShopApp/data/genre/GenreEntity.java	
+@@ -0,0 +1,53 @@
++package com.example.MyBookShopApp.data.genre;
++
++import javax.persistence.*;
++
++@Entity
++@Table(name = "genre")
++public class GenreEntity {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    private int id;
++
++    @Column(columnDefinition = "INT")
++    private int parentId;
++
++    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
++    private String slug;
++
++    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
++    private String name;
++
++    public int getId() {
++        return id;
++    }
++
++    public void setId(int id) {
++        this.id = id;
++    }
++
++    public int getParentId() {
++        return parentId;
++    }
++
++    public void setParentId(int parentId) {
++        this.parentId = parentId;
++    }
++
++    public String getSlug() {
++        return slug;
++    }
++
++    public void setSlug(String slug) {
++        this.slug = slug;
++    }
++
++    public String getName() {
++        return name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++}
+Index: src/main/java/com/example/MyBookShopApp/data/AuthorService.java
+===================================================================
+diff --git a/src/main/java/com/example/MyBookShopApp/data/AuthorService.java b/src/main/java/com/example/MyBookShopApp/data/author/AuthorService.java
+rename from src/main/java/com/example/MyBookShopApp/data/AuthorService.java
+rename to src/main/java/com/example/MyBookShopApp/data/author/AuthorService.java
+--- a/src/main/java/com/example/MyBookShopApp/data/AuthorService.java	
++++ b/src/main/java/com/example/MyBookShopApp/data/author/AuthorService.java	
+@@ -1,4 +1,4 @@
+-package com.example.MyBookShopApp.data;
++package com.example.MyBookShopApp.data.author;
+ 
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Service;
